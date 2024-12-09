@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
-
 
 import os
 import torch
@@ -19,8 +17,6 @@ from sklearn.metrics import classification_report, confusion_matrix
 import seaborn as sns
 from collections import Counter
 
-
-# In[ ]:
 
 
 # 1. Custom Dataset with Grouping for LOPO
@@ -113,8 +109,6 @@ class ECGDataset(Dataset):
         return signal
 
 
-# In[ ]:
-
 
 # 2. Enhanced 1D-CNN Architecture for ECG Signal Feature Extraction
 class Modified1DCNN(nn.Module):
@@ -152,8 +146,6 @@ class Modified1DCNN(nn.Module):
         x = self.fc_layers(x)
         return x
 
-
-# In[ ]:
 
 
 # 3. LOPO Cross-Validation with CNN for Feature Extraction and SVM Classification
@@ -279,9 +271,6 @@ def train_and_evaluate(model, dataset, groups, epochs=20, learning_rate=1e-4):
     plt.xlabel('Predicted')
     plt.ylabel('True')
     plt.show()
-
-
-# In[ ]:
 
 
 # Main Execution
