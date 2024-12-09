@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
 
 import os
 import torch
@@ -19,9 +17,6 @@ from sklearn.decomposition import PCA
 
 from tqdm import tqdm
 from torch.utils.data import DataLoader, Dataset
-
-
-# In[2]:
 
 
 class ECGDataset(Dataset):
@@ -72,8 +67,6 @@ class ECGDataset(Dataset):
         return torch.tensor(x).unsqueeze(0), torch.tensor(y)
 
 
-# In[3]:
-
 
 # CNN Model
 class CNNFeatureExtractor1D(nn.Module):
@@ -110,9 +103,6 @@ class CNNFeatureExtractor1D(nn.Module):
             return x.numel()
 
 
-# In[4]:
-
-
 # Training the CNN
 def train_cnn(model, train_loader, num_epochs=100, learning_rate=0.0001):
     optimizer = optim.Adam(model.parameters(), lr=learning_rate)
@@ -146,9 +136,6 @@ def train_cnn(model, train_loader, num_epochs=100, learning_rate=0.0001):
     plt.show()
 
 
-# In[5]:
-
-
 # Feature Extraction
 def extract_features(loader, model):
     model.eval()
@@ -162,8 +149,6 @@ def extract_features(loader, model):
     return np.concatenate(features, axis=0), np.concatenate(labels, axis=0)
 
 
-# In[6]:
-
 
 # Visualize Features
 def visualize_features(features, labels):
@@ -175,9 +160,6 @@ def visualize_features(features, labels):
     plt.ylabel("Principal Component 2")
     plt.colorbar(label="Classes")
     plt.show()
-
-
-# In[7]:
 
 
 # SVM Training and Evaluation
@@ -201,8 +183,6 @@ def train_and_evaluate_svm(train_features, train_labels, test_features, test_lab
     # Classification Report
     print(classification_report(test_labels, predictions))
 
-
-# In[9]:
 
 
 # Main
